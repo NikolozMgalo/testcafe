@@ -1,0 +1,20 @@
+
+{
+
+    "cucumberautocomplete.steps": [
+
+        "./project/features/steps/*.js"
+
+    ],
+
+    "cucumberautocomplete.syncfeatures": "./project/features/*.feature",
+
+    "cucumberautocomplete.strictGherkinCompletion": true,
+    "cucumber.features": [
+        "project/features/**/*.feature"
+    ],
+    "cucumber.glue": [
+       "project/features/steps/**/*.js"
+    ]
+
+}

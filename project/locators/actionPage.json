@@ -1,0 +1,6 @@
+{   
+    "steamLogo": "#logo_holder",
+    "actionPageLogo": "#Tab_6 > div",
+    "topSellerSection": "#SaleSection_13268",
+    "topSellerButton": "#tab_topsellers_content_trigger"
+}
