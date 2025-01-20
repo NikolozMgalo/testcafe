@@ -25,8 +25,8 @@ function runTest(browser) {
             return runner
                 .src('./cucumbertest.js')
                 .screenshots('reports/screenshots/', true)
-                .browsers('chrome')
-                .run();
+                .browsers(`${browser}`)
+                .run({ disableMultipleWindows: true });;
         }).then(function(report) {
         });
 }

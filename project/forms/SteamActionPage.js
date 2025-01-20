@@ -7,7 +7,7 @@ const locators = require('../locators/actionPage.json');
 class SteamActionPage extends BaseForm {
 
     actionPageLogo = new Label('actionPageLogo', locators.actionPageLogo)
-    topSellerButton = new Button('topSellerButton', locators.topSellerButton);
+    topSellerButton = new Label('topSellerButton', locators.topSellerButton);
     topSellerSection = new Label('topSellerSection', locators.topSellerSection);
     topSellersWithDiscount = new Label('topSellersWithDiscount', locators.topSellersWithDiscount);
     gamesInsideTopSellerSection = new Label('gamesInsideTopSellerSection', locators.gamesInsideTopSellerSection);
@@ -22,39 +22,41 @@ class SteamActionPage extends BaseForm {
     }
 
     async selectTopSellersTab() {
-        //await this.topSellerButton.waitForElementExist();
         await this.topSellerButton.click();
+    }
+    
+    async waitTopSellerToLoad() {
+        await this.topSellerSection.waitForElementExist();
     }
 
     async isTopSellerTabDisplayed() {
         return await this.topSellerButton.waitForElementExist();
     }
 
-    async getSingleGameInfo(number) {
+    async getSingleGameInfo(discount) {
         let game;
         const numberOfGames = await this.singleGameInSection.getCount();
-        for (let i = 0; i < numberOfGames; i++) {
+        for (let i = 1; i <= numberOfGames; i++) {
             let elements = await this.singleGameInSection.getElementByNumber(i).getText();
-            for(let element of elements) {
-                if(element.includes(number))
-                    break;
-                   }
-                   game = elements;
-                   break;
+            let newArr = elements.split("\n")
+            if(newArr[6] === discount) {
+                game = [newArr[0], newArr[6], newArr[8]];
+                break;
+            } 
         }
-        const arr = game.split("\n");
-        const gameInfo = [arr[0], arr[6], arr[8]]
-        return gameInfo;
+        return game;
     }
 
     async getHighestDiscountAmount() {
         let highestNumber = -Infinity;
         const numberOfDiscountedGames = await this.topSellersWithDiscount.getCount();
+        console.log('number of discounted game : ', numberOfDiscountedGames)
 
         for (let i = 0; i < numberOfDiscountedGames; i ++) {
             let element = this.topSellersWithDiscount.getElementByNumber(i);
             let text = await element.getText();
             let percentageValue = parseFloat(text.replace('%', '').trim());
+
 
             if(percentageValue > highestNumber) {
                 highestNumber = percentageValue;
@@ -65,7 +67,7 @@ class SteamActionPage extends BaseForm {
     }
 
     async clickHighestDiscountGame(text) {
-        await this.gameNamesInsideTopSellerSection.clickWithName(text)
+        await this.gameNamesInsideTopSellerSection.clickWithName(text);
     }
 
 };

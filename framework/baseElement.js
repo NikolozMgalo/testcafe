@@ -21,9 +21,7 @@ class BaseElement{
     async clickWithName (text='') {
         Logger.info(`Finding element with name "${this.name}" and clicking on it`);
         const element = this.findElement().withExactText(text);
-        // await testController.hover(element)
         await testController.click(element)
-        await sleep(10000)
     }
 
     async click(name=''){

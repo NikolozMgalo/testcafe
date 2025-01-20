@@ -1,0 +1,7 @@
+{
+
+    "verificationPage": "#app_agegate",
+    "ageYear": "#ageYear",
+    "viewPageButton": "#view_product_page_btn",
+    "rightYear": "#ageYear > option:nth-child(101)"
+}

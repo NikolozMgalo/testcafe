@@ -1,7 +1,7 @@
 {   
-    "actionPageLogo": "#SaleSection_56339",
+    "actionPageLogo": "#SaleSection_24749",
     "topSellerSection": "#SaleSection_13268",
-    "topSellerButton": "div._1edLKYpcJyTYC7ku9fYI1_.Panel.Focusable>div>div:nth-child(3)",
+    "topSellerButton": "#SaleSection_13268 > div._1cOoCFwafBlSkwllIMf3XM._39HWXhhjsbML7K9sme9ItV.SaleSectionForCustomCSS > div._18byEIHFiivSklOwKqIx2b > div._1edLKYpcJyTYC7ku9fYI1_.Panel.Focusable > div > div:nth-child(3)",
     "gamesInsideTopSellerSection": "div._3EdZTDIisUpowxwm6uJ7Iq > div.gASJ2lL_xmVNuZkWGvrWg div.yvqq8z2k4i7-Mzx-JHeNC",
     "discountDiv": " div.cnkoFkzVCby40gJ0jGGS4",
     "topSellersWithDiscount": "div._3EdZTDIisUpowxwm6uJ7Iq > div.gASJ2lL_xmVNuZkWGvrWg div.cnkoFkzVCby40gJ0jGGS4",
