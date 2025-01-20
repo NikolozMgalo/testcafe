@@ -6,11 +6,14 @@ const locators = require('../locators/actionPage.json');
 
 class SteamActionPage extends BaseForm {
 
-    actionPageLogo = new Icon('actionPageLogo', locators.actionPageLogo)
+    actionPageLogo = new Label('actionPageLogo', locators.actionPageLogo)
     topSellerButton = new Button('topSellerButton', locators.topSellerButton);
     topSellerSection = new Label('topSellerSection', locators.topSellerSection);
-
-    //steamLogo = new Icon('steamLogo', locators.steamLogo)
+    topSellersWithDiscount = new Label('topSellersWithDiscount', locators.topSellersWithDiscount);
+    gamesInsideTopSellerSection = new Label('gamesInsideTopSellerSection', locators.gamesInsideTopSellerSection);
+    discountDiv = new Label('discountDiv', locators.discountDiv);
+    singleGameInSection = new Label('SingleGameInSection', locators.singleGameInSection);
+    gameNamesInsideTopSellerSection = new Button('gameNamesInsideTopSellerSection', locators.gameNamesInsideTopSellerSection);
 
     constructor() {
         super()
@@ -18,22 +21,52 @@ class SteamActionPage extends BaseForm {
         this.element = this.actionPageLogo
     }
 
-    async isActionPageLoaded() {
-         await this.topSellerSection.waitForElementExist();
-    }
-
     async selectTopSellersTab() {
+        //await this.topSellerButton.waitForElementExist();
         await this.topSellerButton.click();
     }
 
     async isTopSellerTabDisplayed() {
-        return await this.topSellerSection.waitForElementExist();
+        return await this.topSellerButton.waitForElementExist();
     }
 
-    async moveMouseToTopSeller() {
-        await this.topSellerSection.moveMouseToElement();
+    async getSingleGameInfo(number) {
+        let game;
+        const numberOfGames = await this.singleGameInSection.getCount();
+        for (let i = 0; i < numberOfGames; i++) {
+            let elements = await this.singleGameInSection.getElementByNumber(i).getText();
+            for(let element of elements) {
+                if(element.includes(number))
+                    break;
+                   }
+                   game = elements;
+                   break;
+        }
+        const arr = game.split("\n");
+        const gameInfo = [arr[0], arr[6], arr[8]]
+        return gameInfo;
     }
 
+    async getHighestDiscountAmount() {
+        let highestNumber = -Infinity;
+        const numberOfDiscountedGames = await this.topSellersWithDiscount.getCount();
+
+        for (let i = 0; i < numberOfDiscountedGames; i ++) {
+            let element = this.topSellersWithDiscount.getElementByNumber(i);
+            let text = await element.getText();
+            let percentageValue = parseFloat(text.replace('%', '').trim());
+
+            if(percentageValue > highestNumber) {
+                highestNumber = percentageValue;
+            }
+            highestNumber += '%'
+            return highestNumber;
+        }
+    }
+
+    async clickHighestDiscountGame(text) {
+        await this.gameNamesInsideTopSellerSection.clickWithName(text)
+    }
 
 };
 

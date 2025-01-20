@@ -25,7 +25,7 @@ function runTest(browser) {
             return runner
                 .src('./cucumbertest.js')
                 .screenshots('reports/screenshots/', true)
-                .browsers(`${browser}`)
+                .browsers('chrome')
                 .run();
         }).then(function(report) {
         });
@@ -33,7 +33,7 @@ function runTest(browser) {
 setDefaultTimeout(timeout);
 
 Before(function() {
-    fs.rmdirSync('reports/screenshots', { recursive: true });
+    // fs.rmdirSync('reports/screenshots', { recursive: true });
     runTest('chrome');
     createTestFile();
     return this.waitForTestController.then(function(testController) {

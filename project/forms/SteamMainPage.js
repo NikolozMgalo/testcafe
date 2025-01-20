@@ -14,6 +14,7 @@ class SteamMainPage extends BaseForm {
     installSteamButton = new Button('installButton', locators.installSteam);
     categoriesButton = new Button('categoriesButton', locators.categoriesButton);
     actionButton = new Button('actionButton', locators.actionButton);
+    findByText = new Button('about btn', locators.findByText);
 
     constructor() {
         super()

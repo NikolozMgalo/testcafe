@@ -2,5 +2,6 @@
     "logoIcon": "div.logo",
     "installSteam": "a.header_installsteam_btn.header_installsteam_btn_green",
     "categoriesButton": "#genre_tab > span > a.pulldown_desktop",
-    "actionButton": "#genre_flyout > div > div:nth-child(2) > div:nth-child(3) > a"
+    "actionButton": "#genre_flyout > div > div:nth-child(2) > div:nth-child(3) > a",
+    "findByText": "a.big_button"
 }

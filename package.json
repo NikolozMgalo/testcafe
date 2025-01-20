@@ -12,7 +12,7 @@
     "@cucumber/cucumber": "^10.9.0",
     "cucumber-html-reporter": "^5.5.0",
     "multiple-cucumber-html-reporter": "^1.20.0",
-    "testcafe": "^1.18.5"
+    "testcafe": "^3.7.1"
   },
   "dependencies": {
     "testcafe-reporter-acd-html-reporter": "^1.2.25",
