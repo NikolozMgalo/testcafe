@@ -2,9 +2,6 @@ const { Selector } = require('testcafe');
 const { ClientFunction } = require('testcafe');
 const Logger = require('./utils/logger');
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 class BaseElement{
 
     constructor(name, locator){
@@ -17,11 +14,10 @@ class BaseElement{
         return Selector(this.locator).with({ boundTestRun: testController });
     }
 
-    //created myself for testing reasons
     async clickWithName (text='') {
         Logger.info(`Finding element with name "${this.name}" and clicking on it`);
         const element = this.findElement().withExactText(text);
-        await testController.click(element)
+        await testController.click(element);
     }
 
     async click(name=''){
