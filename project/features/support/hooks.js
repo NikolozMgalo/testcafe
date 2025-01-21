@@ -25,7 +25,7 @@ function runTest(browser) {
             return runner
                 .src('./cucumbertest.js')
                 .screenshots('reports/screenshots/', true)
-                .browsers(`${browser}`)
+                .browsers(`${browser}:headless`)
                 .run({ disableMultipleWindows: true });;
         }).then(function(report) {
         });
@@ -33,7 +33,7 @@ function runTest(browser) {
 setDefaultTimeout(timeout);
 
 Before(function() {
-    // fs.rmdirSync('reports/screenshots', { recursive: true });
+    //fs.rmdirSync('reports/screenshots', { recursive: true });
     runTest('chrome');
     createTestFile();
     return this.waitForTestController.then(function(testController) {
@@ -41,17 +41,6 @@ Before(function() {
     });
 });
 
-/*
-Before(function () {
-    //fs.mkdirSync('temp', { recursive: true});
-    runTest("chrome");
-    createTestFile();
-
-    return this.waitForTestController.then(function (testController) {
-        return testController.maximizeWindow();
-  });
-});
-*/
 After(function() {
     fs.unlinkSync('cucumbertest.js');
     testControllerHolder.free();

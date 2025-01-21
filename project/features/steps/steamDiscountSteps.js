@@ -3,8 +3,6 @@ const SteamMainPage = require('../../forms/SteamMainPage.js');
 const SteamActionPage = require('../../forms/SteamActionPage.js');
 const SteamGamePage = require('../../forms/SteamGamePage.js');
 const SteamVerifyAgePage = require('../../forms/SteamVerifyAgePage.js');
-const { Selector } = require('testcafe');
-const { assert } = require('chai');
 // const { testController } = require('../support/testControllerHolder.js');
 let gameInfo;
 
@@ -22,23 +20,21 @@ When('Select Categories and Action', async () => {
 Then('Action categories page is opened', async () => {
     const status = await SteamActionPage.isFormOpened();
     await testController.expect(status).ok();
-    // await assert(status).isTrue('nope')
 });
 
 Then('Top Seller tab should be visible', async () => {
-    await sleep(5000)
     const status = await SteamActionPage.isFormOpened();
     await testController.expect(status).ok('', { timeout: 1000 });
 })
 
 When('Go to top sellers tab', async () => {
-    await sleep(5000)
     await SteamActionPage.selectTopSellersTab();
 });
 
 When('select game with highest Discount', async () => {
     const highestDiscount = await SteamActionPage.getHighestDiscountAmount();
     gameInfo = await SteamActionPage.getSingleGameInfo(highestDiscount);
+    console.log(gameInfo)
     await SteamActionPage.clickHighestDiscountGame(gameInfo[0]);
 });
 

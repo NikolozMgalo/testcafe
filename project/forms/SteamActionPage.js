@@ -7,7 +7,7 @@ const locators = require('../locators/actionPage.json');
 class SteamActionPage extends BaseForm {
 
     actionPageLogo = new Label('actionPageLogo', locators.actionPageLogo)
-    topSellerButton = new Label('topSellerButton', locators.topSellerButton);
+    topSellerButton = new Button('topSellerButton', locators.topSellerButton);
     topSellerSection = new Label('topSellerSection', locators.topSellerSection);
     topSellersWithDiscount = new Label('topSellersWithDiscount', locators.topSellersWithDiscount);
     gamesInsideTopSellerSection = new Label('gamesInsideTopSellerSection', locators.gamesInsideTopSellerSection);
@@ -22,6 +22,9 @@ class SteamActionPage extends BaseForm {
     }
 
     async selectTopSellersTab() {
+        await this.topSellerSection.moveMouseToElement();
+        // await this.topSellerButton.getElementByNumber(3).click();
+        // await this.topSellerButton.clickWithName('Top Sellers')
         await this.topSellerButton.click();
     }
     

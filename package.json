@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": ".\\node_modules\\.bin\\cucumber-js --format json:/reports/report.json .\\project\\features\\steam.feature"
+    "discount": ".\\node_modules\\.bin\\cucumber-js --format json:/reports/report.json .\\project\\features\\steamDiscount.feature",
+    "download": ".\\node_modules\\.bin\\cucumber-js --format json:/reports/report.json .\\project\\features\\steamDownload.feature"
   },
   "author": "",
   "license": "ISC",
