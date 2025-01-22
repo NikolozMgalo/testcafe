@@ -1,0 +1,5 @@
+{
+    "gameDiscount": ".game_purchase_discount .discount_pct",
+    "gamePrice": ".game_purchase_discount .discount_final_price",
+    "gamePage": "#game_area_purchase"
+}

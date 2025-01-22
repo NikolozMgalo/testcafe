@@ -1,0 +1,4 @@
+{
+   "aboutPage": "#about_greeting",
+    "downloadSteam": "#about_greeting > div.about_install_wrapper > div.about_install.win > a"
+}

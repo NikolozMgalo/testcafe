@@ -1,0 +1,10 @@
+{   
+    "actionPageLogo": "#SaleSection_24749",
+    "topSellerSection": "#SaleSection_68773",
+    "topSellerButton": "div.KDLASaMCaASZ6LnF3kQY8.Focusable[tabindex='0']:nth-of-type(3)",
+    "gamesInsideTopSellerSection": "div._3EdZTDIisUpowxwm6uJ7Iq > div.gASJ2lL_xmVNuZkWGvrWg div.yvqq8z2k4i7-Mzx-JHeNC",
+    "discountDiv": " div.cnkoFkzVCby40gJ0jGGS4",
+    "topSellersWithDiscount": "div._3EdZTDIisUpowxwm6uJ7Iq > div.gASJ2lL_xmVNuZkWGvrWg div.cnkoFkzVCby40gJ0jGGS4",
+    "singleGameInSection": "div._3EdZTDIisUpowxwm6uJ7Iq > div.gASJ2lL_xmVNuZkWGvrWg",
+    "gameNamesInsideTopSellerSection": "div.v9uRg57bwOaPsvAnkXESO>div._3rrH9dPdtHVRMzAEw82AId>a>div"
+}

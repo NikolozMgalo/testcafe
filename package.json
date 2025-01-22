@@ -1,0 +1,23 @@
+{
+  "name": "testcafeexample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "discount": ".\\node_modules\\.bin\\cucumber-js --format json:/reports/report.json .\\project\\features\\steamDiscount.feature",
+    "download": ".\\node_modules\\.bin\\cucumber-js --format json:/reports/report.json .\\project\\features\\steamDownload.feature"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.9.0",
+    "cucumber-html-reporter": "^5.5.0",
+    "multiple-cucumber-html-reporter": "^1.20.0",
+    "testcafe": "^3.7.1"
+  },
+  "dependencies": {
+    "testcafe-reporter-acd-html-reporter": "^1.2.25",
+    "testcafe-reporter-cucumber-json": "^6.3.0",
+    "testcafe-reporter-teamcity": "^1.0.12"
+  }
+}
