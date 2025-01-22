@@ -25,17 +25,6 @@ class BaseElement {
     await testController.click(element);
   }
 
-  async isDisplayed() {
-    Logger.info(`Check is displayed element "${this.name}"`);
-    const element = this.findElement();
-    return await element.exists;
-  }
-
-  async isChecked(name = "") {
-    const element = this.findElement().withText(name);
-    return await element.checked;
-  }
-
   async getCount() {
     const element = this.findElement();
     return await element.count;
@@ -51,11 +40,6 @@ class BaseElement {
     return new BaseElement(this.name, element.nth(number - 1));
   }
 
-  async getAttribute(attribute) {
-    const element = this.findElement();
-    return element.getAttribute(attribute);
-  }
-
   async moveMouseToElement(name = "") {
     const element = this.findElement().withText(name);
     await testController.hover(element);
@@ -65,16 +49,6 @@ class BaseElement {
     const element = this.findElement().with({ timeout: 5000 });
     return await element.exists;
   }
-
-  waitForElementDisappear = ClientFunction(() => {
-    return new Promise((resolve) => {
-      var interval = setInterval(() => {
-        if (document.querySelector(this.element.locator)) return;
-        clearInterval(interval);
-        resolve();
-      }, 100);
-    });
-  });
 }
 
 module.exports = BaseElement;

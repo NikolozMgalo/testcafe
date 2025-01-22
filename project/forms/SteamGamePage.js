@@ -16,18 +16,16 @@ class SteamGamePage extends BaseForm {
     this.element = this.gamePage;
   }
 
-  async comparePrice(price) {
+  async getGamePrice() {
     gamePrice = await this.gamePrice.getElementByNumber(1).getText();
     const convertedGamePrice = parseFloat(gamePrice.replace("$", ""));
-    const convertedPrice = parseFloat(price.replace("$", ""));
-    return convertedGamePrice === convertedPrice;
+    return convertedGamePrice;
   }
 
-  async compareDiscount(discount) {
+  async getGameDiscount() {
     gameDiscount = await this.gameDiscount.getElementByNumber(1).getText();
     const convertedGameDiscount = parseFloat(gameDiscount.replace("%", ""));
-    const convertedDiscount = parseFloat(discount.replace("%", ""));
-    return convertedGameDiscount === convertedDiscount;
+    return convertedGameDiscount;
   }
 }
 

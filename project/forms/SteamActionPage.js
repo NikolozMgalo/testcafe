@@ -7,9 +7,18 @@ class SteamActionPage extends BaseForm {
   actionPageLogo = new Label("actionPageLogo", locators.actionPageLogo);
   topSellerButton = new Button("topSellerButton", locators.topSellerButton);
   topSellerSection = new Label("topSellerSection", locators.topSellerSection);
-  topSellersWithDiscount = new Label("topSellersWithDiscount", locators.topSellersWithDiscount);
-  singleGameInSection = new Label("SingleGameInSection", locators.singleGameInSection);
-  gameNamesInsideTopSellerSection = new Button("gameNamesInsideTopSellerSection", locators.gameNamesInsideTopSellerSection);
+  topSellersWithDiscount = new Label(
+    "topSellersWithDiscount",
+    locators.topSellersWithDiscount
+  );
+  singleGameInSection = new Label(
+    "SingleGameInSection",
+    locators.singleGameInSection
+  );
+  gameNamesInsideTopSellerSection = new Button(
+    "gameNamesInsideTopSellerSection",
+    locators.gameNamesInsideTopSellerSection
+  );
 
   constructor() {
     super();
@@ -20,14 +29,6 @@ class SteamActionPage extends BaseForm {
   async selectTopSellersTab() {
     await this.topSellerSection.moveMouseToElement();
     await this.topSellerButton.click();
-  }
-
-  async waitTopSellerToLoad() {
-    await this.topSellerSection.waitForElementExist();
-  }
-
-  async isTopSellerTabDisplayed() {
-    return await this.topSellerButton.waitForElementExist();
   }
 
   async getSingleGameInfo(discount) {
@@ -47,20 +48,18 @@ class SteamActionPage extends BaseForm {
   }
 
   async getHighestDiscountAmount() {
-    let highestNumber = -Infinity;
-    const numberOfDiscountedGames =
-      await this.topSellersWithDiscount.getCount();
-    for (let i = 0; i < numberOfDiscountedGames; i++) {
+    let highestDiscount = Infinity;
+    const numberOfDiscountedGames = await this.topSellersWithDiscount.getCount();
+    for (let i = 1; i <= numberOfDiscountedGames; i++) {
       let element = this.topSellersWithDiscount.getElementByNumber(i);
       let text = await element.getText();
-      let percentageValue = parseFloat(text.replace("%", "").trim());
-
-      if (percentageValue > highestNumber) {
-        highestNumber = percentageValue;
+      let discountValue = parseFloat(text.replace("%", "").trim());
+      if (discountValue < highestDiscount) {
+        highestDiscount = discountValue;
       }
-      highestNumber += "%";
-      return highestNumber;
     }
+    highestDiscount += "%";
+    return highestDiscount;
   }
 
   async clickHighestDiscountGame(text) {

@@ -26,6 +26,7 @@ When("Go to top sellers tab", async () => {
 });
 
 When("select game with highest Discount", async () => {
+  await testController.wait(10000)
   const highestDiscount = await SteamActionPage.getHighestDiscountAmount();
   gameInfo = await SteamActionPage.getSingleGameInfo(highestDiscount);
   await SteamActionPage.clickHighestDiscountGame(gameInfo[0]);
@@ -44,8 +45,11 @@ Then("Game page should be displayed", async () => {
 });
 
 Then("Game price and discount should be correct", async () => {
-  const price = await SteamGamePage.comparePrice(gameInfo[2]);
-  await testController.expect(price).ok();
-  const discount = await SteamGamePage.compareDiscount(gameInfo[1]);
-  await testController.expect(discount).ok();
-});
+  console.log(gameInfo)
+  const expectedPrice = parseFloat(gameInfo[2].replace("$", ""));
+  const price = await SteamGamePage.getGamePrice();
+  await testController.expect(price).eql(expectedPrice);
+  const expectedDiscount = parseFloat(gameInfo[1].replace("%", ""))
+  const discount = await SteamGamePage.getGameDiscount();
+  await testController.expect(discount).eql(expectedDiscount);
+})

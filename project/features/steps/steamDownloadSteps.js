@@ -1,11 +1,7 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const SteamMainPage = require("../../forms/SteamMainPage.js");
 const SteamAboutPage = require("../../forms/SteamAboutPage.js");
-const path = require("path");
-const os = require("os");
-
 const fileName = "SteamSetup.exe";
-const downloadedFilePath = path.join(os.homedir(), "Downloads", fileName);
 
 Given("Steam page is open", async () => {
   await testController.navigateTo("https://store.steampowered.com/");
@@ -22,6 +18,7 @@ When("When click on download steam installer", async () => {
 });
 
 Then("Steam should be downloaded", async () => {
-  const status = await SteamAboutPage.isFileExist(downloadedFilePath);
+  const downloadPath = await SteamAboutPage.getFileDownloadPath(fileName);
+  const status = await SteamAboutPage.waitForFileDownload(downloadPath);
   await testController.expect(status).ok("file was not downloaded");
 });
